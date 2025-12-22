@@ -19,11 +19,11 @@ const About = () => {
             className="prose prose-invert max-w-none mb-16"
           >
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-              Hi, I'm <span className="text-primary font-semibold">Kunj Desai</span> — an aspiring{" "}
-              <span className="text-primary">Artificial Intelligence Engineer</span> and{" "}
-              <span className="text-primary">Machine Learning enthusiast</span> who loves turning
-              ideas into intelligent systems. I'm deeply fascinated by how data and algorithms can
-              shape the future of healthcare, automation, and creativity in technology.
+              Hi, I'm <span className="text-primary font-semibold">Dhiraj Dhole</span> — a passionate{" "}
+              <span className="text-primary">Web Developer</span> and{" "}
+              <span className="text-primary">Frontend enthusiast</span> who loves turning
+              ideas into beautiful, interactive web experiences. I'm deeply fascinated by how modern 
+              web technologies can shape user experiences and bring creativity to life.
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
@@ -33,9 +33,9 @@ const About = () => {
             </p>
 
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a final year B.Tech IT Engineering student who has developed expertise in areas
-              like Computer Vision, NLP, and Data Processing. Seeking internship opportunities to
-              apply my skills and contribute to impactful AI solutions.
+              I specialize in building responsive, performant web applications using React, 
+              TypeScript, and modern CSS frameworks. Seeking opportunities to apply my skills and 
+              contribute to innovative web projects.
             </p>
           </motion.div>
 

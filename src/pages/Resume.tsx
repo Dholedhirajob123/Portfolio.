@@ -34,10 +34,10 @@ const Resume = () => {
                 className="p-6 rounded-xl bg-card border border-border"
               >
                 <h3 className="text-xl font-bold text-primary mb-4 flex items-center gap-2">
-                  <span className="text-2xl">👤</span> Kunj Desai
+                  <span className="text-2xl">👤</span> Dhiraj Dhole
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Machine Learning & AI Developer
+                  Web Developer & Frontend Developer
                 </p>
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <p className="flex items-center gap-2">
