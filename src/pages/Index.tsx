@@ -6,11 +6,11 @@ import ParticleField from "@/components/three/ParticleField";
 import SkillBadge from "@/components/ui/SkillBadge";
 
 const skills = [
-  "AI Enthusiast",
-  "Machine Learning Engineer",
-  "Deep Learning Expert",
-  "Computer Vision Researcher",
-  "Developer",
+  "Web Developer",
+  "Frontend Developer",
+  "React Expert",
+  "JavaScript Developer",
+  "UI/UX Enthusiast",
 ];
 
 const Index = () => {
@@ -31,7 +31,7 @@ const Index = () => {
             >
               <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary/50 glow-box animate-pulse-glow">
                 <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/20 flex items-center justify-center">
-                  <span className="text-6xl md:text-8xl font-bold text-primary">KD</span>
+                  <span className="text-6xl md:text-8xl font-bold text-primary">DD</span>
                 </div>
               </div>
               {/* Decorative rings */}
@@ -47,7 +47,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4"
               >
-                Hi, I'm <span className="text-primary glow-text">Kunj Desai</span>
+                Hi, I'm <span className="text-primary glow-text">Dhiraj Dhole</span>
               </motion.h1>
 
               <motion.p
@@ -56,7 +56,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-lg md:text-xl text-muted-foreground mb-6"
               >
-                Artificial Intelligence Engineer | Frontend Developer | Tech
+                Web Developer | Frontend Developer | Tech Enthusiast
               </motion.p>
 
               {/* Skills Badges */}

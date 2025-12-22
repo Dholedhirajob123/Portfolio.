@@ -25,11 +25,11 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary/50 flex items-center justify-center glow-box group-hover:scale-105 transition-transform">
-              <span className="text-primary font-bold text-lg">KD</span>
+              <span className="text-primary font-bold text-lg">DD</span>
             </div>
             <div className="hidden sm:block">
-              <span className="font-semibold text-foreground">Kunj Desai</span>
-              <p className="text-xs text-muted-foreground">AI & ML Developer</p>
+              <span className="font-semibold text-foreground">Dhiraj Dhole</span>
+              <p className="text-xs text-muted-foreground">Web Developer</p>
             </div>
           </Link>
 

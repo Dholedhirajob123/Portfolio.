@@ -35,7 +35,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-muted-foreground text-sm text-center">
-            © {new Date().getFullYear()} Kunj Desai — Built with React & Three.js
+            © {new Date().getFullYear()} Dhiraj Dhole — Built with React & Three.js
           </p>
         </div>
       </div>
