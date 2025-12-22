@@ -7,27 +7,32 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const skills = [
-  { name: "Python", x: -3, y: 2, z: 0 },
-  { name: "TensorFlow", x: 2, y: 1.5, z: -1 },
-  { name: "PyTorch", x: -2, y: -1, z: 0.5 },
-  { name: "React", x: 3, y: -0.5, z: -0.5 },
-  { name: "JavaScript", x: -1, y: 0.5, z: 1 },
-  { name: "OpenCV", x: 1, y: -2, z: 0 },
-  { name: "MongoDB", x: -2.5, y: 0, z: -1 },
-  { name: "MySQL", x: 2.5, y: 2, z: 0 },
-  { name: "C++", x: 0, y: 1.5, z: -1 },
-  { name: "Java", x: -1.5, y: -2, z: 0.5 },
-  { name: "HTML", x: 1.5, y: -1.5, z: 1 },
-  { name: "CSS", x: 0, y: -0.5, z: -0.5 },
+  { name: "Python", x: -3, y: 2, z: 0, abbr: "Py" },
+  { name: "TensorFlow", x: 2, y: 1.5, z: -1, abbr: "TF" },
+  { name: "PyTorch", x: -2, y: -1, z: 0.5, abbr: "PT" },
+  { name: "React", x: 3, y: -0.5, z: -0.5, abbr: "Re" },
+  { name: "JavaScript", x: -1, y: 0.5, z: 1, abbr: "JS" },
+  { name: "OpenCV", x: 1, y: -2, z: 0, abbr: "CV" },
+  { name: "MongoDB", x: -2.5, y: 0, z: -1, abbr: "DB" },
+  { name: "MySQL", x: 2.5, y: 2, z: 0, abbr: "SQL" },
+  { name: "C++", x: 0, y: 1.5, z: -1, abbr: "C++" },
+  { name: "Java", x: -1.5, y: -2, z: 0.5, abbr: "Jv" },
+  { name: "HTML", x: 1.5, y: -1.5, z: 1, abbr: "H5" },
+  { name: "CSS", x: 0, y: -0.5, z: -0.5, abbr: "CSS" },
 ];
 
-function SkillOrb({ name, position }: { name: string; position: [number, number, number] }) {
+function SkillOrb({ name, abbr, position }: { name: string; abbr: string; position: [number, number, number] }) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
 
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
       meshRef.current.rotation.y = Math.cos(state.clock.elapsedTime * 0.2) * 0.1;
+    }
+    // Keep text facing camera
+    if (groupRef.current) {
+      groupRef.current.lookAt(state.camera.position);
     }
   });
 
@@ -48,6 +53,18 @@ function SkillOrb({ name, position }: { name: string; position: [number, number,
           <ringGeometry args={[0.55, 0.6, 32]} />
           <meshBasicMaterial color="#00d4ff" transparent opacity={0.5} side={THREE.DoubleSide} />
         </mesh>
+        {/* Logo text inside the orb */}
+        <group ref={groupRef}>
+          <Text
+            fontSize={0.2}
+            color="#00d4ff"
+            anchorX="center"
+            anchorY="middle"
+            font="https://fonts.gstatic.com/s/spacegrotesk/v15/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUXskPMBBSSJLm2E.woff2"
+          >
+            {abbr}
+          </Text>
+        </group>
       </group>
     </Float>
   );
@@ -63,6 +80,7 @@ function SkillsScene() {
         <SkillOrb
           key={skill.name}
           name={skill.name}
+          abbr={skill.abbr}
           position={[skill.x, skill.y, skill.z]}
         />
       ))}
