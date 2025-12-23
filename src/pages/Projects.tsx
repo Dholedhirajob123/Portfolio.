@@ -6,39 +6,67 @@ import GlowCard from "@/components/ui/GlowCard";
 
 const projects = [
   {
-    title: "Mammogram Malignancy Detection",
-    description: "ResNet CNN + VGG16 ensemble for 3 image breast cancer detection with 92% preprocessing and image preprocessing pipeline.",
-    tags: ["TensorFlow", "Python", "OpenCV", "VGG16"],
-    category: "AI/ML",
+    title: "Novapex Infohub",
+    description: "My company website - A modern digital solutions agency offering web development, design, and technology services.",
+    tags: ["React", "Tailwind CSS", "TypeScript", "Framer Motion"],
+    category: "Company Website",
     live: true,
+    liveUrl: "#",
+    github: "#",
   },
   {
-    title: "Indian Sign Language Interpreter",
-    description: "Interpreter for video recognition and translation using MediaPipe + TensorFlow + existing large language model API.",
-    tags: ["MediaPipe", "TensorFlow", "Real-Time", "Flask"],
-    category: "Computer Vision",
+    title: "SriManPower",
+    description: "A comprehensive manpower and recruitment solutions platform connecting employers with skilled workforce.",
+    tags: ["React", "Node.js", "MongoDB", "Express"],
+    category: "Business Platform",
     live: true,
+    liveUrl: "#",
+    github: "#",
   },
   {
-    title: "DocsChat - Gemini AI Chatbot",
-    description: "An intelligent document interaction chat app using the Gemini API that allows query of answers from uploaded PDFs.",
-    tags: ["Gemini API", "LangChain", "Streamlit"],
-    category: "GenAI",
+    title: "Janori Gram Panchayat",
+    description: "Official website for Janori Gram Panchayat providing digital governance and community services.",
+    tags: ["HTML", "CSS", "JavaScript", "PHP"],
+    category: "Government",
     live: true,
+    liveUrl: "#",
+    github: "#",
   },
   {
-    title: "Breast Cancer Prediction",
-    description: "ML pipeline using SVC, Random Forest, and ensemble methods for breast cancer classification.",
-    tags: ["Scikit-learn", "Pandas", "NumPy"],
-    category: "Machine Learning",
-    live: false,
+    title: "Citi Offers",
+    description: "E-commerce platform featuring deals, discounts, and offers from various brands and retailers.",
+    tags: ["React", "Node.js", "MongoDB", "Stripe"],
+    category: "E-commerce",
+    live: true,
+    liveUrl: "#",
+    github: "#",
   },
   {
-    title: "ProMed - Data Profiler",
-    description: "Smart data profiling and preprocessing web app for machine learning workflows.",
-    tags: ["Python", "Streamlit", "Pandas"],
-    category: "Data Science",
+    title: "BookEasy",
+    description: "Online booking platform for seamless reservations and appointment scheduling across various services.",
+    tags: ["React", "Firebase", "Tailwind CSS", "Node.js"],
+    category: "Booking Platform",
     live: true,
+    liveUrl: "#",
+    github: "#",
+  },
+  {
+    title: "Risod Election",
+    description: "Election management and information portal for local governance and democratic processes.",
+    tags: ["React", "MySQL", "PHP", "Bootstrap"],
+    category: "Government",
+    live: true,
+    liveUrl: "#",
+    github: "#",
+  },
+  {
+    title: "Restaurant Platform",
+    description: "Complete restaurant management solution with online ordering, menu management, and table reservations.",
+    tags: ["React", "Node.js", "MongoDB", "Socket.io"],
+    category: "Food & Dining",
+    live: true,
+    liveUrl: "#",
+    github: "#",
   },
 ];
 
@@ -93,15 +121,25 @@ const Projects = () => {
 
                     {/* Actions */}
                     <div className="flex items-center gap-3 pt-4 border-t border-border">
-                      <button className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      <a 
+                        href={project.github} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
                         <Github size={16} />
                         Code
-                      </button>
+                      </a>
                       {project.live && (
-                        <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity">
-                          <Eye size={14} />
+                        <a 
+                          href={project.liveUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+                        >
+                          <ExternalLink size={14} />
                           Live
-                        </button>
+                        </a>
                       )}
                     </div>
                   </div>
