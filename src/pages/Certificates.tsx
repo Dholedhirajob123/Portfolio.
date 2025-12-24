@@ -1,9 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Download, X } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlowCard from "@/components/ui/GlowCard";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const certificates = [
   {
@@ -11,45 +17,62 @@ const certificates = [
     issuer: "Coursera",
     year: "2023",
     category: "Tech",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
   },
   {
     title: "Computer Vision with TensorFlow",
     issuer: "Coursera",
     year: "2023",
     category: "Tech",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
   },
   {
     title: "Machine Learning Fundamentals",
     issuer: "Google",
     year: "2023",
     category: "Tech",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800",
   },
   {
     title: "Python for Data Science",
     issuer: "IBM",
     year: "2022",
     category: "Tech",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800",
   },
   {
     title: "Web Development Bootcamp",
     issuer: "Udemy",
     year: "2022",
     category: "Others",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800",
   },
   {
     title: "AWS Cloud Practitioner",
     issuer: "Amazon",
     year: "2023",
     category: "Tech",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
   },
 ];
 
 const Certificates = () => {
   const [filter, setFilter] = useState<"all" | "Tech" | "Others">("all");
+  const [selectedCert, setSelectedCert] = useState<typeof certificates[0] | null>(null);
 
   const filteredCertificates = certificates.filter(
     (cert) => filter === "all" || cert.category === filter
   );
+
+  const handleDownload = (cert: typeof certificates[0]) => {
+    const link = document.createElement("a");
+    link.href = cert.image;
+    link.download = `${cert.title.replace(/\s+/g, "_")}_Certificate.jpg`;
+    link.target = "_blank";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <Layout>
@@ -91,9 +114,16 @@ const Certificates = () => {
               >
                 <GlowCard>
                   <div className="p-6">
-                    {/* Certificate Icon */}
-                    <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center mb-4">
-                      <span className="text-primary text-xl">📜</span>
+                    {/* Certificate Thumbnail */}
+                    <div 
+                      className="w-full h-32 rounded-lg bg-primary/10 border border-primary/30 mb-4 overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                      onClick={() => setSelectedCert(cert)}
+                    >
+                      <img 
+                        src={cert.image} 
+                        alt={cert.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
 
                     <h3 className="text-lg font-semibold text-foreground mb-2">
@@ -103,10 +133,22 @@ const Certificates = () => {
                       {cert.issuer} • {cert.year}
                     </p>
 
-                    <button className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity">
-                      <ExternalLink size={14} />
-                      View
-                    </button>
+                    <div className="flex gap-2">
+                      <button 
+                        onClick={() => setSelectedCert(cert)}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+                      >
+                        <ExternalLink size={14} />
+                        View
+                      </button>
+                      <button 
+                        onClick={() => handleDownload(cert)}
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-foreground text-sm font-medium hover:bg-secondary/80 transition-colors"
+                      >
+                        <Download size={14} />
+                        Download
+                      </button>
+                    </div>
                   </div>
                 </GlowCard>
               </motion.div>
@@ -114,6 +156,34 @@ const Certificates = () => {
           </div>
         </div>
       </section>
+
+      {/* Certificate Dialog */}
+      <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle>{selectedCert?.title}</DialogTitle>
+          </DialogHeader>
+          <div className="mt-4">
+            <img 
+              src={selectedCert?.image} 
+              alt={selectedCert?.title}
+              className="w-full rounded-lg"
+            />
+            <div className="flex items-center justify-between mt-4">
+              <p className="text-muted-foreground">
+                {selectedCert?.issuer} • {selectedCert?.year}
+              </p>
+              <button 
+                onClick={() => selectedCert && handleDownload(selectedCert)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+              >
+                <Download size={14} />
+                Download
+              </button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
