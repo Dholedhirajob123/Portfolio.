@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Download, X } from "lucide-react";
+import { ExternalLink, Download, Eye, FileText } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlowCard from "@/components/ui/GlowCard";
@@ -10,14 +10,42 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import appointmentLetter from "@/assets/Appointment_Letter.jpeg";
+import kpCertificate from "@/assets/kp_certificate.png";
 
-const certificates = [
+interface Document {
+  title: string;
+  issuer: string;
+  year: string;
+  category: "Tech" | "Others" | "Documents";
+  image: string;
+  type: "certificate" | "letter";
+}
+
+const certificates: Document[] = [
+  {
+    title: "Full Stack Developers Course Certificate",
+    issuer: "KP Infotech Services Pvt. Ltd.",
+    year: "2023",
+    category: "Tech",
+    image: kpCertificate,
+    type: "certificate",
+  },
+  {
+    title: "Appointment Letter",
+    issuer: "KP Infotech Services Pvt. Ltd.",
+    year: "2023",
+    category: "Documents",
+    image: appointmentLetter,
+    type: "letter",
+  },
   {
     title: "Deep Learning Specialization",
     issuer: "Coursera",
     year: "2023",
     category: "Tech",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
+    type: "certificate",
   },
   {
     title: "Computer Vision with TensorFlow",
@@ -25,6 +53,7 @@ const certificates = [
     year: "2023",
     category: "Tech",
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
+    type: "certificate",
   },
   {
     title: "Machine Learning Fundamentals",
@@ -32,6 +61,7 @@ const certificates = [
     year: "2023",
     category: "Tech",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800",
+    type: "certificate",
   },
   {
     title: "Python for Data Science",
@@ -39,6 +69,7 @@ const certificates = [
     year: "2022",
     category: "Tech",
     image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800",
+    type: "certificate",
   },
   {
     title: "Web Development Bootcamp",
@@ -46,6 +77,7 @@ const certificates = [
     year: "2022",
     category: "Others",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800",
+    type: "certificate",
   },
   {
     title: "AWS Cloud Practitioner",
@@ -53,21 +85,23 @@ const certificates = [
     year: "2023",
     category: "Tech",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
+    type: "certificate",
   },
 ];
 
 const Certificates = () => {
-  const [filter, setFilter] = useState<"all" | "Tech" | "Others">("all");
-  const [selectedCert, setSelectedCert] = useState<typeof certificates[0] | null>(null);
+  const [filter, setFilter] = useState<"all" | "Tech" | "Others" | "Documents">("all");
+  const [selectedCert, setSelectedCert] = useState<Document | null>(null);
 
   const filteredCertificates = certificates.filter(
     (cert) => filter === "all" || cert.category === filter
   );
 
-  const handleDownload = (cert: typeof certificates[0]) => {
+  const handleDownload = (cert: Document) => {
     const link = document.createElement("a");
     link.href = cert.image;
-    link.download = `${cert.title.replace(/\s+/g, "_")}_Certificate.jpg`;
+    const extension = cert.image.includes(".png") ? "png" : "jpg";
+    link.download = `${cert.title.replace(/\s+/g, "_")}.${extension}`;
     link.target = "_blank";
     document.body.appendChild(link);
     link.click();
@@ -79,14 +113,14 @@ const Certificates = () => {
       <section className="py-20 min-h-screen">
         <div className="container mx-auto px-4">
           <SectionHeader
-            title="Certificates"
-            subtitle="Organized by Tech and Others"
+            title="Certificates & Documents"
+            subtitle="Organized by Tech, Others, and Documents"
             highlight="Credentials"
           />
 
           {/* Filter Buttons */}
-          <div className="flex items-center gap-3 justify-center mb-10">
-            {["all", "Tech", "Others"].map((filterOption) => (
+          <div className="flex flex-wrap items-center gap-3 justify-center mb-10">
+            {["all", "Tech", "Others", "Documents"].map((filterOption) => (
               <button
                 key={filterOption}
                 onClick={() => setFilter(filterOption as typeof filter)}
@@ -114,16 +148,31 @@ const Certificates = () => {
               >
                 <GlowCard>
                   <div className="p-6">
-                    {/* Certificate Thumbnail */}
+                    {/* Type Badge */}
+                    <div className="flex items-center gap-2 mb-3">
+                      {cert.type === "letter" ? (
+                        <FileText size={14} className="text-primary" />
+                      ) : (
+                        <ExternalLink size={14} className="text-primary" />
+                      )}
+                      <span className="text-xs text-primary font-medium uppercase">
+                        {cert.type}
+                      </span>
+                    </div>
+
+                    {/* Thumbnail */}
                     <div 
-                      className="w-full h-32 rounded-lg bg-primary/10 border border-primary/30 mb-4 overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                      className="w-full h-40 rounded-lg bg-primary/10 border border-primary/30 mb-4 overflow-hidden cursor-pointer group relative"
                       onClick={() => setSelectedCert(cert)}
                     >
                       <img 
                         src={cert.image} 
                         alt={cert.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-top transition-transform group-hover:scale-105"
                       />
+                      <div className="absolute inset-0 bg-background/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <Eye className="text-primary" size={32} />
+                      </div>
                     </div>
 
                     <h3 className="text-lg font-semibold text-foreground mb-2">
@@ -136,14 +185,14 @@ const Certificates = () => {
                     <div className="flex gap-2">
                       <button 
                         onClick={() => setSelectedCert(cert)}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-secondary text-foreground text-sm font-medium hover:bg-secondary/80 transition-colors"
                       >
-                        <ExternalLink size={14} />
+                        <Eye size={14} />
                         View
                       </button>
                       <button 
                         onClick={() => handleDownload(cert)}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-secondary text-foreground text-sm font-medium hover:bg-secondary/80 transition-colors"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity glow-box"
                       >
                         <Download size={14} />
                         Download
@@ -159,7 +208,7 @@ const Certificates = () => {
 
       {/* Certificate Dialog */}
       <Dialog open={!!selectedCert} onOpenChange={() => setSelectedCert(null)}>
-        <DialogContent className="max-w-3xl">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-auto">
           <DialogHeader>
             <DialogTitle>{selectedCert?.title}</DialogTitle>
           </DialogHeader>
