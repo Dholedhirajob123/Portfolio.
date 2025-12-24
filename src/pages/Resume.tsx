@@ -1,9 +1,29 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, Mail, MapPin, Phone, GraduationCap, Award, Briefcase } from "lucide-react";
+import { Download, Mail, MapPin, GraduationCap, Award, Briefcase, Eye, FileText } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import appointmentLetter from "@/assets/Appointment_Letter.jpeg";
 
 const Resume = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = appointmentLetter;
+    link.download = "Dhiraj_Dhole_Appointment_Letter.jpeg";
+    link.target = "_blank";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <Layout>
       <section className="py-20 min-h-screen">
@@ -14,13 +34,59 @@ const Resume = () => {
             highlight="CV"
           />
 
-          {/* Download Button */}
-          <div className="flex justify-center mb-12">
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-box">
-              <Download size={18} />
-              Download Resume
-            </button>
-          </div>
+          {/* Resume Document Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-12 max-w-md mx-auto"
+          >
+            <div className="p-6 rounded-xl bg-card border border-border">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 rounded-lg bg-primary/20 border border-primary/50 flex items-center justify-center">
+                  <FileText className="text-primary" size={24} />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">Appointment Letter</h3>
+                  <p className="text-sm text-muted-foreground">KP Infotech Services Pvt. Ltd.</p>
+                </div>
+              </div>
+              
+              {/* Thumbnail Preview */}
+              <div 
+                className="relative mb-4 rounded-lg overflow-hidden border border-border cursor-pointer group"
+                onClick={() => setIsDialogOpen(true)}
+              >
+                <img 
+                  src={appointmentLetter} 
+                  alt="Appointment Letter" 
+                  className="w-full h-48 object-cover object-top transition-transform group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-background/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Eye className="text-primary" size={32} />
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => setIsDialogOpen(true)}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-secondary text-foreground font-medium hover:bg-secondary/80 transition-all"
+                >
+                  <Eye size={16} />
+                  View
+                </button>
+                <button 
+                  onClick={handleDownload}
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-box"
+                >
+                  <Download size={16} />
+                  Download
+                </button>
+              </div>
+            </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Left Column */}
@@ -177,6 +243,29 @@ const Resume = () => {
           </div>
         </div>
       </section>
+
+      {/* View Dialog */}
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-auto">
+          <DialogHeader>
+            <DialogTitle>Appointment Letter</DialogTitle>
+          </DialogHeader>
+          <img 
+            src={appointmentLetter} 
+            alt="Appointment Letter" 
+            className="w-full rounded-lg"
+          />
+          <div className="flex justify-end mt-4">
+            <button 
+              onClick={handleDownload}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all"
+            >
+              <Download size={16} />
+              Download
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
