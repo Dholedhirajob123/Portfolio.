@@ -1,92 +1,6 @@
-import { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, Text } from "@react-three/drei";
 import { motion } from "framer-motion";
-import * as THREE from "three";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
-
-const skills = [
-  { name: "Python", x: -3, y: 2, z: 0, abbr: "Py" },
-  { name: "TensorFlow", x: 2, y: 1.5, z: -1, abbr: "TF" },
-  { name: "PyTorch", x: -2, y: -1, z: 0.5, abbr: "PT" },
-  { name: "React", x: 3, y: -0.5, z: -0.5, abbr: "Re" },
-  { name: "JavaScript", x: -1, y: 0.5, z: 1, abbr: "JS" },
-  { name: "OpenCV", x: 1, y: -2, z: 0, abbr: "CV" },
-  { name: "MongoDB", x: -2.5, y: 0, z: -1, abbr: "DB" },
-  { name: "MySQL", x: 2.5, y: 2, z: 0, abbr: "SQL" },
-  { name: "C++", x: 0, y: 1.5, z: -1, abbr: "C++" },
-  { name: "Java", x: -1.5, y: -2, z: 0.5, abbr: "Jv" },
-  { name: "HTML", x: 1.5, y: -1.5, z: 1, abbr: "H5" },
-  { name: "CSS", x: 0, y: -0.5, z: -0.5, abbr: "CSS" },
-];
-
-function SkillOrb({ name, abbr, position }: { name: string; abbr: string; position: [number, number, number] }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const groupRef = useRef<THREE.Group>(null);
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
-      meshRef.current.rotation.y = Math.cos(state.clock.elapsedTime * 0.2) * 0.1;
-    }
-    // Keep text facing camera
-    if (groupRef.current) {
-      groupRef.current.lookAt(state.camera.position);
-    }
-  });
-
-  return (
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-      <group position={position}>
-        <mesh ref={meshRef}>
-          <sphereGeometry args={[0.5, 32, 32]} />
-          <meshStandardMaterial
-            color="#00d4ff"
-            emissive="#00d4ff"
-            emissiveIntensity={0.3}
-            transparent
-            opacity={0.2}
-          />
-        </mesh>
-        <mesh>
-          <ringGeometry args={[0.55, 0.6, 32]} />
-          <meshBasicMaterial color="#00d4ff" transparent opacity={0.5} side={THREE.DoubleSide} />
-        </mesh>
-        {/* Logo text inside the orb */}
-        <group ref={groupRef}>
-          <Text
-            fontSize={0.2}
-            color="#00d4ff"
-            anchorX="center"
-            anchorY="middle"
-            font="https://fonts.gstatic.com/s/spacegrotesk/v15/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUXskPMBBSSJLm2E.woff2"
-          >
-            {abbr}
-          </Text>
-        </group>
-      </group>
-    </Float>
-  );
-}
-
-function SkillsScene() {
-  return (
-    <>
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={0.5} color="#00d4ff" />
-      <pointLight position={[-10, -10, -10]} intensity={0.3} color="#0099ff" />
-      {skills.map((skill) => (
-        <SkillOrb
-          key={skill.name}
-          name={skill.name}
-          abbr={skill.abbr}
-          position={[skill.x, skill.y, skill.z]}
-        />
-      ))}
-    </>
-  );
-}
 
 const skillCategories = [
   {
@@ -121,32 +35,6 @@ const Skills = () => {
             subtitle="Technical expertise blended with creativity — explore my core competencies below"
             highlight="Skills"
           />
-
-          {/* 3D Skills Visualization */}
-          <div className="relative h-[400px] md:h-[500px] mb-16 rounded-2xl overflow-hidden border border-border bg-card/50">
-            <Canvas camera={{ position: [0, 0, 8], fov: 50 }}>
-              <SkillsScene />
-            </Canvas>
-            {/* Skill labels overlay */}
-            <div className="absolute inset-0 pointer-events-none">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="absolute text-primary text-sm font-medium"
-                  style={{
-                    left: `${50 + skill.x * 8}%`,
-                    top: `${50 - skill.y * 8}%`,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  {skill.name}
-                </motion.div>
-              ))}
-            </div>
-          </div>
 
           {/* Skills Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
