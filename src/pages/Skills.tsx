@@ -3,25 +3,29 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 
 const skillCategories = [
-  {
+ {
     category: "Languages",
-    items: ["Python", "JavaScript", "TypeScript", "C++", "Java", "SQL"],
+    items: ["HTML5", "CSS3", "JavaScript (ES6+)", "C" ],
   },
   {
-    category: "AI/ML",
-    items: ["TensorFlow", "PyTorch", "Keras", "Scikit-learn", "OpenCV", "MediaPipe"],
+    category: "Frontend",
+    items: ["React.js (Hooks, Router, Context API / Redux)", "Tailwind CSS", "TypeScript"],
   },
   {
-    category: "Web Development",
-    items: ["React", "Next.js", "Node.js", "HTML5", "CSS3", "Tailwind CSS"],
+    category: "Backend",
+    items: ["Node.js", "Express.js"],
   },
   {
     category: "Databases",
-    items: ["MongoDB", "MySQL", "PostgreSQL", "Firebase"],
+    items: ["MongoDB"],
   },
   {
-    category: "Tools",
-    items: ["Git", "Docker", "VS Code", "Jupyter", "Streamlit"],
+    category: "Tools & Platforms",
+    items: ["Git", "GitHub","VS Code", " Netlify", "Vercel"],
+  },
+    {
+    category: "Web Concepts",
+    items: ["REST APIs", "Responsive Design","Component-Based Architecture"],
   },
 ];
 

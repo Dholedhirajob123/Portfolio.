@@ -58,34 +58,60 @@ const About = () => {
                   <div className="w-3 h-3 rounded-full bg-primary mt-2" />
                   <div>
                     <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-2">
-                      B.Tech in Artificial Intelligence and Data Science
+                      B.Tech / B.E.
                     </span>
                     <h4 className="text-lg font-semibold text-foreground">
-                      S.E.T (Sarvajanik University) — Surat, Gujarat
+                      Jawaharlal Nehru Engineering College ( Ch. Sambhajinagar )
                     </h4>
-                    <p className="text-muted-foreground text-sm mt-1">
+                    {/* <p className="text-muted-foreground text-sm mt-1">
                       4th Year (Pursuing) | GPA: 8.0
-                    </p>
+                    </p> */}
                     <p className="text-muted-foreground text-xs mt-1">
-                      2021 – 2025
+                     ( 2019 – 2023 )
                     </p>
                   </div>
                 </div>
               </div>
 
               {/* HSC */}
-              <div className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
+      
+               <div className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
                 <div className="flex items-start gap-4">
-                  <div className="w-3 h-3 rounded-full bg-primary/50 mt-2" />
+                  <div className="w-3 h-3 rounded-full bg-primary mt-2" />
                   <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-2">
+                      
+Higher Secondary (HSC)
+                    </span>
                     <h4 className="text-lg font-semibold text-foreground">
-                      Higher Secondary (HSC)
+                      Bhavana Public School ( Risod )
                     </h4>
-                    <p className="text-muted-foreground text-sm">
-                      Science Stream | 82%
-                    </p>
+                    {/* <p className="text-muted-foreground text-sm mt-1">
+                      4th Year (Pursuing) | GPA: 8.0
+                    </p> */}
                     <p className="text-muted-foreground text-xs mt-1">
-                      2019 – 2021
+                     ( 2019 )
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+                <div className="p-6 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors">
+                <div className="flex items-start gap-4">
+                  <div className="w-3 h-3 rounded-full bg-primary mt-2" />
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mb-2">
+                      
+Secondary School (SSC)
+                    </span>
+                    <h4 className="text-lg font-semibold text-foreground">
+                      Bhavana Public School ( Risod )
+                    </h4>
+                    {/* <p className="text-muted-foreground text-sm mt-1">
+                      4th Year (Pursuing) | GPA: 8.0
+                    </p> */}
+                    <p className="text-muted-foreground text-xs mt-1">
+                     ( 2017 )
                     </p>
                   </div>
                 </div>

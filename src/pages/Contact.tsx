@@ -5,15 +5,6 @@ import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { toast } from "sonner";
 
-const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:kunj@example.com", label: "Email" },
-  { icon: Phone, href: "#", label: "WhatsApp" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-];
-
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -26,6 +17,48 @@ const Contact = () => {
     toast.success("Message sent successfully! I'll get back to you soon.");
     setFormData({ name: "", subject: "", message: "" });
   };
+
+  // Function to handle WhatsApp click
+  const handleWhatsAppClick = () => {
+    // Phone number: +91-9922837879 (remove hyphens)
+    const phoneNumber = "+919922837879";
+    // URL-encoded default message
+    const message = encodeURIComponent("Hello, I'm reaching out from your portfolio website.");
+    // Open WhatsApp with pre-filled message
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+  };
+
+  // Social links array with clickable email and WhatsApp
+  const socialLinks = [
+    { 
+      icon: Github, 
+      href: "https://github.com/Dholedhirajob123", 
+      label: "GitHub",
+      onClick: null
+    },
+    { 
+      icon: Linkedin, 
+      href: "#", 
+      label: "LinkedIn",
+      onClick: null
+    },
+    { 
+      icon: Mail, 
+      href: "dholedhirajob123@gmail.com", 
+      label: "Email",
+      onClick: null,
+      target: "_blank",
+      rel: "noopener noreferrer"
+    },
+    { 
+      icon: Phone, 
+      href: "992287879", 
+      label: "WhatsApp",
+      onClick: handleWhatsAppClick
+    },
+    // { icon: Instagram, href: "#", label: "Instagram" },
+    // { icon: Facebook, href: "#", label: "Facebook" },
+  ];
 
   return (
     <Layout>
@@ -55,17 +88,61 @@ const Contact = () => {
             className="flex items-center justify-center gap-4 mb-12"
           >
             {socialLinks.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
+              social.onClick ? (
+                // For WhatsApp (button with onClick)
+                <button
+                  key={social.label}
+                  onClick={social.onClick}
+                  className="w-12 h-12 rounded-full border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:glow-box transition-all duration-300 cursor-pointer"
+                  aria-label={social.label}
+                >
+                  <social.icon size={20} />
+                </button>
+              ) : (
+                // For other social links (anchor tags)
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target={social.target || "_blank"}
+                  rel={social.rel || "noopener noreferrer"}
+                  className="w-12 h-12 rounded-full border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:glow-box transition-all duration-300"
+                  aria-label={social.label}
+                >
+                  <social.icon size={20} />
+                </a>
+              )
+            ))}
+          </motion.div>
+
+          {/* Contact Information Display */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="text-center mb-8"
+          >
+            <p className="text-muted-foreground mb-2">You can also reach me directly:</p>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+              {/* Email */}
+              <a 
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=dholedhirajob123@gmail.com" 
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-full border border-border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:glow-box transition-all duration-300"
-                aria-label={social.label}
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
               >
-                <social.icon size={20} />
+                <Mail size={16} className="text-primary" />
+                dholedhirajob123@gmail.com
               </a>
-            ))}
+              
+              {/* Phone/WhatsApp */}
+              <button 
+                onClick={handleWhatsAppClick}
+                className="flex items-center gap-2 text-foreground hover:text-primary transition-colors"
+              >
+                <Phone size={16} className="text-primary" />
+                +91-9922837879
+              </button>
+            </div>
           </motion.div>
 
           {/* Contact Form */}

@@ -39,54 +39,54 @@ const certificates: Document[] = [
     image: appointmentLetter,
     type: "letter",
   },
-  {
-    title: "Deep Learning Specialization",
-    issuer: "Coursera",
-    year: "2023",
-    category: "Tech",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
-    type: "certificate",
-  },
-  {
-    title: "Computer Vision with TensorFlow",
-    issuer: "Coursera",
-    year: "2023",
-    category: "Tech",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
-    type: "certificate",
-  },
-  {
-    title: "Machine Learning Fundamentals",
-    issuer: "Google",
-    year: "2023",
-    category: "Tech",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800",
-    type: "certificate",
-  },
-  {
-    title: "Python for Data Science",
-    issuer: "IBM",
-    year: "2022",
-    category: "Tech",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800",
-    type: "certificate",
-  },
-  {
-    title: "Web Development Bootcamp",
-    issuer: "Udemy",
-    year: "2022",
-    category: "Others",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800",
-    type: "certificate",
-  },
-  {
-    title: "AWS Cloud Practitioner",
-    issuer: "Amazon",
-    year: "2023",
-    category: "Tech",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
-    type: "certificate",
-  },
+  // {
+  //   title: "Deep Learning Specialization",
+  //   issuer: "Coursera",
+  //   year: "2023",
+  //   category: "Tech",
+  //   image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800",
+  //   type: "certificate",
+  // },
+  // {
+  //   title: "Computer Vision with TensorFlow",
+  //   issuer: "Coursera",
+  //   year: "2023",
+  //   category: "Tech",
+  //   image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800",
+  //   type: "certificate",
+  // },
+  // {
+  //   title: "Machine Learning Fundamentals",
+  //   issuer: "Google",
+  //   year: "2023",
+  //   category: "Tech",
+  //   image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800",
+  //   type: "certificate",
+  // },
+  // {
+  //   title: "Python for Data Science",
+  //   issuer: "IBM",
+  //   year: "2022",
+  //   category: "Tech",
+  //   image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800",
+  //   type: "certificate",
+  // },
+  // {
+  //   title: "Web Development Bootcamp",
+  //   issuer: "Udemy",
+  //   year: "2022",
+  //   category: "Others",
+  //   image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800",
+  //   type: "certificate",
+  // },
+  // {
+  //   title: "AWS Cloud Practitioner",
+  //   issuer: "Amazon",
+  //   year: "2023",
+  //   category: "Tech",
+  //   image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800",
+  //   type: "certificate",
+  // },
 ];
 
 const Certificates = () => {
@@ -120,7 +120,7 @@ const Certificates = () => {
 
           {/* Filter Buttons */}
           <div className="flex flex-wrap items-center gap-3 justify-center mb-10">
-            {["all", "Tech", "Others", "Documents"].map((filterOption) => (
+            {["all", "Tech",  "Documents"].map((filterOption) => (
               <button
                 key={filterOption}
                 onClick={() => setFilter(filterOption as typeof filter)}

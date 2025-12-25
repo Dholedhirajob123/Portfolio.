@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, MapPin, Briefcase, Mail } from "lucide-react";
+import { ArrowRight, MapPin, Briefcase, Mail, Phone } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import ParticleField from "@/components/three/ParticleField";
 import SkillBadge from "@/components/ui/SkillBadge";
@@ -8,7 +8,7 @@ import SkillBadge from "@/components/ui/SkillBadge";
 const skills = [
   "Web Developer",
   "Frontend Developer",
-  "React Expert",
+  "React",
   "JavaScript Developer",
   "UI/UX Enthusiast",
 ];
@@ -56,7 +56,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-lg md:text-xl text-muted-foreground mb-6"
               >
-                Web Developer | Frontend Developer | Tech Enthusiast
+                Web Developer | Frontend Developer 
               </motion.p>
 
               {/* Skills Badges */}
@@ -72,15 +72,15 @@ const Index = () => {
               </motion.div>
 
               {/* Info Cards */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex flex-wrap gap-6 justify-center lg:justify-start mb-8"
               >
                 <div className="flex items-center gap-2 text-muted-foreground">
-                  <MapPin className="text-primary" size={18} />
-                  <span>Surat, Gujarat, India</span>
+                  <Phone className="text-primary" size={18} />
+                  <span>+91-9922837879</span>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Briefcase className="text-primary" size={18} />
@@ -88,9 +88,9 @@ const Index = () => {
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Mail className="text-primary" size={18} />
-                  <span>kunjp2012@gmail.com</span>
+                  <span>dholedhirajob123@gmail.com</span>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* CTA Buttons */}
               <motion.div
