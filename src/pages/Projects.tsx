@@ -14,7 +14,7 @@ const projects = [
     category: "Company Website",
     live: true,
     liveUrl: "https://novapexinfohub.com", // Add your actual URL
-    github: "#",
+    
   },
   {
     title: "SriManPowers",
@@ -23,7 +23,7 @@ const projects = [
     category: "Business Platform",
     live: true,
     liveUrl: "https://srimanpower.com", // Add your actual URL
-    github: "#",
+    
   },
   {
     title: "Janori Gram Panchayat",
@@ -32,7 +32,7 @@ const projects = [
     category: "Government",
     live: true,
     liveUrl: "https://aapli-janori-3ljc.vercel.app/",
-    github: "#",
+    
   },
   {
     title: "Citi Offers",
@@ -41,7 +41,7 @@ const projects = [
     category: "E-commerce",
     live: true,
     liveUrl: "https://citioffers.in/",
-    github: "#",
+    
   },
   {
     title: "BookEasy",
@@ -50,7 +50,7 @@ const projects = [
     category: "Booking Platform",
     live: true,
     liveUrl: "https://bookeasy.citioffers.in/",
-    github: "#",
+    
   },
   {
     title: "Risod Election",
@@ -59,7 +59,7 @@ const projects = [
     category: "Government",
     live: true,
     liveUrl: "https://election-murex.vercel.app/",
-    github: "#",
+    
   },
   {
     title: "Restaurant Platform",

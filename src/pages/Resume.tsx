@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import appointmentLetter from "@/assets/Appointment_Letter.jpeg";
+import dhirajImage from "@/assets/Dhiraj.jpg";
 
 const Resume = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -278,8 +279,8 @@ const Resume = () => {
             onClick={() => setIsDialogOpen(true)}
           >
             <img 
-              src="../../src/assets/Dhiraj.jpg"
-              alt="Appointment Letter" 
+              src={dhirajImage}
+              alt="Resume" 
               className="w-full h-48 object-cover object-top transition-transform group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-background/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -314,7 +315,7 @@ const Resume = () => {
             <DialogTitle>Appointment Letter</DialogTitle>
           </DialogHeader>
           <img 
-            src="../../src/assets/Dhiraj.jpg"
+            src={dhirajImage}
             alt="Appointment Letter" 
             className="w-full rounded-lg"
           />
