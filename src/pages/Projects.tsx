@@ -13,7 +13,7 @@ const projects = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop", // Business/Company theme
     category: "Company Website",
     live: true,
-    liveUrl: "https://novapexinfohub.com", // Add your actual URL
+    liveUrl: " https://share.google/wy6moGSkY9jaQJMaE", // Add your actual URL
     
   },
   {
