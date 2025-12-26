@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Eye } from "lucide-react";
+import { ExternalLink, Eye } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import SectionHeader from "@/components/ui/SectionHeader";
 import GlowCard from "@/components/ui/GlowCard";
@@ -68,7 +68,6 @@ const projects = [
     category: "Food & Dining",
     live: true,
     liveUrl: "#",
-    github: "#",
   },
 ];
 
@@ -122,7 +121,7 @@ const Projects = () => {
 
                     {/* Actions */}
                     <div className="flex items-center gap-3 pt-4 border-t border-border">
-                      <a
+                      {/* <a
                         href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -130,7 +129,7 @@ const Projects = () => {
                       >
                         <Github size={16} />
                         Code
-                      </a>
+                      </a> */}
                       {project.live && (
                         <a
                           href={project.liveUrl}
